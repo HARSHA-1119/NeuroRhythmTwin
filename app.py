@@ -12,6 +12,16 @@ st.set_page_config(
 )
 
 st.title("🧠 NeuroRhythm Twin")
+st.caption(
+    "Digital health twin prototype | "
+    "Historical sample data and simulated current signals"
+)
+
+st.info(
+    "Research demonstration only. Current signals and prediction labels "
+    "are synthetic. This prototype is not clinically validated and "
+    "must not be used for diagnosis or treatment decisions."
+)
 st.subheader("Your Personal Digital Health Twin")
 
 st.info(
@@ -90,15 +100,50 @@ prediction_score = predict_demo_event(
     stress_index=float(latest["Stress Index (simulated)"])
 )
 
+
 st.metric(
-    "Synthetic event score",
+    "Synthetic pattern score",
     f"{prediction_score * 100:.1f}%"
 )
+
+st.caption(
+    "This score reflects how the demonstration model classifies "
+    "synthetic input patterns. It is not a clinical risk probability "
+    "and must not be used for medical decisions."
+)
+
 
 st.caption(
     "The model was trained on generated data with a rule-based teaching label. "
     "This score does not represent the probability of a real health event."
 )
+
+
+# Digital Twin Signal Summary
+st.markdown("### Digital Twin Signal Summary")
+
+st.caption(
+    "Latest dashboard snapshot — demonstration data, not a clinical assessment."
+)
+
+summary_col1, summary_col2 = st.columns(2)
+
+with summary_col1:
+    st.markdown("**Historical reference**")
+    st.write("Source: `historical_health_data.csv`")
+    st.write("Purpose: Review the supplied historical sample measurements.")
+
+with summary_col2:
+    st.markdown("**Current simulated signals**")
+    st.write("Source: Synthetic dashboard data")
+    st.write("Purpose: Demonstrate how a changing signal stream could be monitored.")
+
+st.warning(
+    "Historical samples and simulated signals may not represent the same "
+    "person or a clinically comparable time period. Do not interpret "
+    "differences as evidence of health deterioration or improvement."
+)
+
 
 # Trend chart
 st.markdown("### Wearable Signal Trends")
