@@ -1,76 +1,163 @@
-# 🧠 NeuroRhythm Twin
-### A Personalized Digital Health Twin with Adaptive Wellbeing Experiments
+# NeuroRhythm Twin
+### An AI-Assisted Digital Health Twin Prototype
 
-## Overview
+NeuroRhythm Twin is a prototype that demonstrates how historical health measurements, simulated physiological signals, and machine-learning outputs can be combined in an interactive digital health dashboard.
 
-NeuroRhythm Twin is a software prototype exploring how historical health information, simulated wearable signals, and user-reported focus feedback can be combined in a personal digital twin.
+The project explores how a digital twin interface could help users and researchers inspect changing signals, compare sample measurements, and experiment with wellbeing-related activities.
 
-The goal is to help users explore patterns in their wellbeing and evaluate whether different audio or relaxation sessions are associated with changes in their self-reported focus.
+> **Research demonstration only:** This prototype uses synthetic signals and sample historical data. It has not been clinically validated and must not be used for diagnosis, treatment, or medical decision-making.
 
-## Problem
+## 1. Project Objectives
 
-Health and wellbeing signals vary over time, while generic wellness recommendations may not reflect an individual's patterns or preferences. Users need understandable ways to explore their own trends and evaluate which low-risk wellbeing activities work best for them.
+- Demonstrate a digital health twin dashboard.
+- Visualize historical and simulated health-related measurements.
+- Explore a machine-learning workflow using synthetic signal data.
+- Make model inputs, outputs, and limitations transparent.
+- Provide an interactive environment for experimenting with wellbeing activities.
 
-## Proposed Solution
+## 2. Features
 
-NeuroRhythm Twin brings together:
+### Interactive Dashboard
+Displays health-related sample measurements and simulated signal values.
 
-- Historical health-data visualization
-- Simulated wearable readings
-- Heart rate, heart-rate variability (HRV), sleep, and a synthetic stress index
-- A machine-learning demonstration using synthetic data
-- Before-and-after focus ratings for audio and quiet-break experiments
-- Historical-versus-simulated signal comparisons
+### Signal Trend Visualization
+Uses charts to explore changes in metrics such as:
+- Heart rate (bpm)
+- Heart rate variability (HRV, ms)
+- Simulated stress index
+- Sleep-related measurements available in the dataset
 
-## Current Prototype Features
+### AI Signal Prediction Demo
+Uses a Random Forest classifier trained on generated synthetic data with rule-based labels. The displayed score estimates the model's output for the synthetic class label; it is **not** the probability of a real health event.
 
-- Interactive Streamlit dashboard
-- Synthetic health-data generation
-- Historical CSV data import
-- Interactive signal-trend charts
-- Demonstration machine-learning score
-- User-reported focus experiment form
-- Session-level experiment history and CSV export
+### Signal Input Summary
+Displays the signal values passed to the demonstration model.
 
-## Technology Stack
+### Demo Model Interpretation
+Shows whether the model classifies an input pattern into its synthetic class-1 category.
 
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- Scikit-learn
-- Plotly
+### Model Training and Limitations
+Explains the training approach, synthetic labels, input features, and limitations.
 
-## Run Locally
+### Historical Data Comparison
+Displays supplied sample historical measurements alongside simulated current signals. The two sources may not represent the same person or comparable time periods.
 
-1. Install Python.
-2. Clone or download this repository.
-3. Open a terminal in the project directory.
-4. Create and activate a virtual environment.
-5. Install dependencies:
+### Wellbeing Experiment
+Provides a demonstration workflow for recording focus ratings before and after selected activities. Results are exploratory and do not establish that an activity caused a change.
 
-   `python -m pip install -r requirements.txt`
+### CSV Export
+Allows users to download supported dashboard data for further inspection.
 
-6. Start the application:
+## 3. Technology Stack
 
-   `python -m streamlit run app.py`
+- **Language:** Python
+- **Dashboard:** Streamlit
+- **Data processing:** Pandas, NumPy
+- **Machine learning:** Scikit-learn
+- **Visualization:** Plotly
+- **Data format:** CSV
+- **Version control:** Git and GitHub
+- **Deployment:** Streamlit Community Cloud
 
-## Data and Safety
+## 4. Project Structure
 
-The current prototype uses fictional historical records and simulated wearable data. Its machine-learning demonstration is trained on synthetic, rule-generated labels and has not been clinically validated.
+```text
+NeuroRhythmTwin/
+├── app.py
+├── prediction_model.py
+├── historical_health_data.csv
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── .venv/
+```
 
-The displayed model score is not a clinical risk probability, diagnosis, or medical recommendation. Self-reported focus changes do not prove that audio caused an improvement.
+The `.venv/` directory is a local development environment and should not be committed to GitHub.
 
-Do not upload real patient information to the public repository. Any future use of real health data would require appropriate consent, privacy safeguards, data-quality checks, clinical oversight, and rigorous model evaluation.
+## 5. Run Locally
 
-## Roadmap
+### Prerequisites
+- Python installed
+- Git (optional, for cloning the repository)
 
-- Persistent storage for experiment history
-- Clearly defined prediction target and evaluation on held-out data
-- Model explanations and uncertainty reporting
-- Optional integration with supported wearable data sources
-- Privacy controls and clinician-oriented reporting
+### Installation
 
-## Project Status
+Clone the repository:
 
-Early-stage proof of concept for a digital health twin hackathon. Features and predictive claims remain experimental.
+```bash
+git clone https://github.com/HARSHA-1119/NeuroRhythmTwin.git
+cd NeuroRhythmTwin
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the dashboard:
+
+```bash
+python -m streamlit run app.py
+```
+
+Open the local URL displayed in the terminal, usually `http://localhost:8501`.
+
+## 6. Machine-Learning Approach
+
+The demonstration model is a Random Forest classifier trained on generated synthetic signal data.
+
+The teaching label is generated by a predefined rule involving heart rate and simulated stress index. The classifier learns to approximate this synthetic label from its input features.
+
+Because the training labels are rule-generated:
+- High test accuracy does not establish real-world predictive performance.
+- The output can differ from a direct threshold check.
+- The score should not be interpreted as clinical risk.
+- Performance on real individuals or clinical outcomes has not been established.
+
+## 7. Data and Privacy
+
+The current prototype uses generated signals and supplied sample historical data rather than a validated live clinical data feed.
+
+Do not enter identifiable patient information or upload private medical records into this demonstration. Before introducing real health data, appropriate consent, access controls, security safeguards, governance, and privacy review would be required.
+
+## 8. Limitations and Future Work
+
+Current limitations:
+- Synthetic rather than clinically validated training data
+- Rule-based demonstration labels
+- No established prediction of real adverse health events
+- Historical and simulated measurements may not be directly comparable
+- Wellbeing experiment results are exploratory
+- No demonstrated integration with clinical monitoring devices or electronic health records
+
+Potential future work:
+1. Define a specific, clinically meaningful prediction target.
+2. Identify an appropriate, ethically accessible dataset.
+3. Establish data quality and preprocessing procedures.
+4. Evaluate against suitable baselines using leakage-resistant validation.
+5. Assess calibration, sensitivity, specificity, and other relevant metrics.
+6. Add interpretable model explanations.
+7. Conduct privacy, security, and clinical review before any real-world use.
+
+## 9. Disclaimer
+
+NeuroRhythm Twin is an educational and research prototype. It is not a medical device, does not provide medical advice, and is not intended to diagnose, predict, prevent, or treat any disease or adverse health event.
+
+## 10. Repository
+
+GitHub: https://github.com/HARSHA-1119/NeuroRhythmTwin
+
+The prototype is intended to demonstrate a possible digital health twin workflow and provide a foundation for further research and responsible development.
