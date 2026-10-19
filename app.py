@@ -5,7 +5,6 @@ import plotly.express as px
 from prediction_model import (
     predict_demo_event,
     get_demo_model_metrics,
-    get_demo_feature_importance,
 )
 from pathlib import Path
 
@@ -1545,7 +1544,7 @@ evaluation_report = {
     "recall": positive_metrics["recall"],
     "f1_score": positive_metrics["f1-score"],
     "confusion_matrix": demo_metrics["confusion_matrix"],
-    "feature_importance": get_demo_feature_importance(),
+    "feature_importance": {},
     "limitations": (
         "Metrics measure agreement with synthetic labels generated "
         "by a demonstration rule. They do not establish clinical "
@@ -1562,7 +1561,7 @@ evaluation_report_df = pd.DataFrame(
         {"Metric": "F1-score", "Value": evaluation_report["f1_score"]},
         *[
             {"Metric": f"Feature importance: {name}", "Value": value}
-            for name, value in evaluation_report["feature_importance"].items()
+            for name, value in evaluation_report.get("feature_importance", {}).items()
         ],
     ]
 )
