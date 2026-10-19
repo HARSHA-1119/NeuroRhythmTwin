@@ -1543,7 +1543,10 @@ evaluation_report = {
     "precision": positive_metrics["precision"],
     "recall": positive_metrics["recall"],
     "f1_score": positive_metrics["f1-score"],
-    "confusion_matrix": demo_metrics["confusion_matrix"],
+    "confusion_matrix": demo_metrics.get(
+    "confusion_matrix",
+    [[0, 0], [0, 0]],
+    ),
     "feature_importance": {},
     "limitations": (
         "Metrics measure agreement with synthetic labels generated "
