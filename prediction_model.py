@@ -124,6 +124,7 @@ def get_demo_model_metrics():
 
 
 
+
 def get_demo_feature_importance():
     """Return feature importance for the synthetic demo model."""
     return {
