@@ -11,10 +11,539 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🧠 NeuroRhythm Twin")
+
+# Futuristic NeuroRhythm Twin Theme
+st.markdown("""
+<style>
+/* Import futuristic typography */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Main application background */
+.stApp {
+    background:
+        radial-gradient(ellipse at 15% 0%, rgba(0, 115, 255, 0.15), transparent 38%),
+        radial-gradient(ellipse at 90% 25%, rgba(0, 238, 255, 0.08), transparent 35%),
+        linear-gradient(145deg, #020817 0%, #06152b 50%, #020817 100%);
+    color: #e6f7ff;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Main content spacing */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1800px;
+}
+
+/* Main headings */
+h1, h2, h3 {
+    color: #eafaff !important;
+    letter-spacing: 0.4px;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif !important;
+    text-shadow: 0 0 18px rgba(0, 210, 255, 0.4);
+}
+
+h2, h3 {
+    text-shadow: 0 0 12px rgba(0, 180, 255, 0.16);
+}
+
+/* Paragraphs and labels */
+p, label, .stMarkdown, [data-testid="stCaptionContainer"] {
+    color: #b8cee4;
+}
+
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #06152b 0%, #030b19 100%);
+    border-right: 1px solid rgba(0, 217, 255, 0.35);
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    color: #49e8ff !important;
+}
+
+/* Glass-style metric cards */
+[data-testid="stMetric"] {
+    background: linear-gradient(
+        145deg,
+        rgba(10, 38, 69, 0.92),
+        rgba(4, 18, 38, 0.92)
+    );
+    border: 1px solid rgba(0, 205, 255, 0.42);
+    border-radius: 15px;
+    padding: 17px 18px;
+    box-shadow:
+        0 0 15px rgba(0, 174, 255, 0.08),
+        inset 0 0 18px rgba(0, 174, 255, 0.035);
+    transition: all 0.25s ease;
+}
+
+[data-testid="stMetric"]:hover {
+    border-color: #32e6ff;
+    box-shadow:
+        0 0 22px rgba(0, 205, 255, 0.22),
+        inset 0 0 18px rgba(0, 174, 255, 0.07);
+    transform: translateY(-2px);
+}
+
+[data-testid="stMetricLabel"] {
+    color: #91c8e8 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #f1fcff !important;
+    text-shadow: 0 0 12px rgba(0, 220, 255, 0.28);
+}
+
+/* Bordered containers and expandable panels */
+[data-testid="stExpander"],
+[data-testid="stForm"] {
+    background: rgba(5, 23, 45, 0.78);
+    border: 1px solid rgba(0, 190, 255, 0.28);
+    border-radius: 14px;
+}
+
+/* Buttons */
+.stButton > button,
+.stDownloadButton > button {
+    color: #e9fcff;
+    background: linear-gradient(110deg, #0757a8, #087eac);
+    border: 1px solid #28dfff;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+
+.stButton > button:hover,
+.stDownloadButton > button:hover {
+    color: #ffffff;
+    border-color: #a4f5ff;
+    box-shadow: 0 0 18px rgba(0, 205, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Inputs */
+.stTextInput input,
+.stSelectbox [data-baseweb="select"],
+.stNumberInput input {
+    background-color: #081c33;
+    color: #e9fcff;
+    border-color: rgba(0, 200, 255, 0.45);
+    border-radius: 8px;
+}
+
+/* Alerts */
+[data-testid="stAlert"] {
+    background: rgba(7, 34, 59, 0.85);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 190, 255, 0.28);
+}
+
+/* Chart containers */
+[data-testid="stPlotlyChart"] {
+    background: rgba(4, 18, 36, 0.72);
+    border: 1px solid rgba(0, 190, 255, 0.23);
+    border-radius: 14px;
+    padding: 8px;
+}
+
+/* Dividers */
+hr {
+    border-color: rgba(0, 190, 255, 0.25) !important;
+}
+
+/* Subtle entrance animation */
+@keyframes neonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-testid="stVerticalBlock"] {
+    animation: neonFadeIn 0.45s ease-out;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+    .block-container {
+        padding: 1rem 0.7rem 2rem;
+    }
+
+    h1 {
+        font-size: 1.65rem !important;
+    }
+}
+.neuro-panel {
+    background: linear-gradient(
+        120deg,
+        rgba(8, 28, 52, 0.94),
+        rgba(13, 18, 48, 0.94)
+    );
+    border: 1px solid rgba(53, 223, 255, 0.35);
+    border-radius: 18px;
+    padding: 22px;
+    margin: 18px 0 26px 0;
+    box-shadow:
+        0 0 22px rgba(0, 195, 255, 0.08),
+        inset 0 0 22px rgba(0, 195, 255, 0.035);
+}
+
+.neuro-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: #55eaff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(53, 223, 255, 0.18);
+}
+
+.neuro-status {
+    color: #75ffc5;
+    font-size: 10px;
+}
+
+.neuro-status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #75ffc5;
+    border-radius: 50%;
+    margin-right: 7px;
+    box-shadow: 0 0 10px #75ffc5;
+    animation: neuroPulse 1.8s infinite;
+}
+
+.neuro-panel-body {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding-top: 22px;
+}
+
+.neuro-orb {
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #35dfff;
+    background: radial-gradient(
+        circle,
+        rgba(53, 223, 255, 0.2),
+        rgba(65, 70, 255, 0.08) 55%,
+        transparent 72%
+    );
+    box-shadow:
+        0 0 18px rgba(53, 223, 255, 0.35),
+        inset 0 0 18px rgba(53, 223, 255, 0.2);
+    animation: neuroFloat 3s ease-in-out infinite;
+}
+
+.neuro-orb-inner {
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    text-shadow: 0 0 14px #35dfff;
+}
+
+.neuro-system-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.neuro-system-text h3 {
+    color: #e5f7ff;
+    font-size: 20px;
+    margin: 0 0 8px 0;
+}
+
+.neuro-system-text p {
+    color: #9dbbd4;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.neuro-progress {
+    height: 4px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    background: rgba(100, 160, 200, 0.15);
+}
+
+.neuro-progress-fill {
+    height: 100%;
+    width: 72%;
+    background: linear-gradient(90deg, #35dfff, #8174ff);
+    box-shadow: 0 0 12px rgba(53, 223, 255, 0.8);
+    border-radius: 8px;
+}
+
+.neuro-system-text small {
+    display: block;
+    color: #6f9bb8;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    margin-top: 10px;
+}
+
+@keyframes neuroPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+}
+
+@keyframes neuroFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@media (max-width: 600px) {
+    .neuro-panel-body {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .neuro-orb {
+        width: 65px;
+        height: 65px;
+    }
+
+    .neuro-orb-inner {
+        font-size: 20px;
+    }
+
+    .neuro-system-text h3 {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neuro-status-dot,
+    .neuro-orb {
+        animation: none;
+    }
+}
+/* Futuristic dashboard section headings */
+h2, h3 {
+    color: #DDF7FF;
+    letter-spacing: 0.5px;
+}
+
+div[data-testid="stSubheader"] {
+    color: #45E5FF;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #35DFFF,
+        #8174FF,
+        transparent
+    );
+    opacity: 0.7;
+    margin: 26px 0;
+}
+
+.neuro-section-label {
+    font-family: 'Orbitron', sans-serif;
+    color: #45E5FF;
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(53, 223, 255, 0.4);
+}
+
+.neuro-wave-panel {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid rgba(53, 223, 255, 0.3);
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        rgba(5, 20, 43, 0.95),
+        rgba(20, 15, 52, 0.95)
+    );
+    box-shadow: inset 0 0 24px rgba(53, 223, 255, 0.04);
+}
+
+.neuro-wave-heading,
+.neuro-wave-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.4px;
+}
+
+.neuro-wave-heading {
+    color: #55eaff;
+}
+
+.neuro-wave-tag {
+    color: #c1a5ff;
+}
+
+.neuro-wave {
+    position: relative;
+    height: 125px;
+    overflow: hidden;
+    margin: 18px 0;
+    border-radius: 12px;
+    background:
+        linear-gradient(rgba(53,223,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(53,223,255,.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
+.neuro-wave-line {
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    width: 120%;
+    height: 3px;
+    background: #35dfff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #35dfff, 0 0 20px #35dfff;
+    transform: skewY(-7deg);
+    animation: neuroWaveMove 3s ease-in-out infinite alternate;
+}
+
+.neuro-wave-line-two {
+    top: 62%;
+    height: 2px;
+    background: #9677ff;
+    box-shadow: 0 0 8px #9677ff, 0 0 18px #9677ff;
+    transform: skewY(5deg);
+    animation-duration: 4s;
+    animation-direction: alternate-reverse;
+}
+
+.neuro-wave-footer {
+    color: #83a7c4;
+    font-size: 9px;
+}
+
+@keyframes neuroWaveMove {
+    from {
+        transform: translateY(-12px) skewY(-7deg) scaleY(1);
+    }
+    to {
+        transform: translateY(12px) skewY(7deg) scaleY(1.7);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neuro-wave-line {
+        animation: none;
+    }
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+# Futuristic Dashboard Header
+header_left, header_right = st.columns([3, 1])
+
+with header_left:
+    st.markdown(
+        """
+        <div style="padding: 8px 0 18px 0;">
+            <div style="
+                color: #35e5ff;
+                font-size: 11px;
+                letter-spacing: 4px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            ">
+                NEURAL SYSTEMS / DIGITAL HEALTH PLATFORM
+            </div>
+            <h1 style="
+                font-family: Orbitron, sans-serif;
+                font-size: clamp(26px, 3vw, 42px);
+                margin: 0;
+                color: #e9fbff;
+                text-shadow: 0 0 22px rgba(0, 210, 255, 0.5);
+            ">
+                NEURORHYTHM <span style="color:#32dfff;">TWIN</span>
+            </h1>
+            <div style="
+                color: #9bbbd7;
+                font-size: 14px;
+                margin-top: 9px;
+            ">
+                Understand Today. Build a Healthier Tomorrow.
+            </div>
+            <div style="
+                width: 190px;
+                height: 2px;
+                margin-top: 17px;
+                background: linear-gradient(90deg, #25e6ff, #5d68ff, transparent);
+                box-shadow: 0 0 12px rgba(37, 230, 255, 0.65);
+            "></div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+with header_right:
+    st.markdown(
+        """
+        <div style="
+            margin-top: 20px;
+            padding: 13px 15px;
+            background: linear-gradient(135deg, rgba(8,42,65,.9), rgba(4,19,39,.9));
+            border: 1px solid rgba(45,225,255,.45);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 18px rgba(0,180,255,.08);
+        ">
+            <div style="color:#49f5c8;font-size:12px;letter-spacing:1px;">
+                ● SYSTEM ONLINE
+            </div>
+            <div style="color:#91b9d8;font-size:10px;margin-top:6px;">
+                SYNTHETIC DEMO MODE
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 st.caption(
-    "Digital health twin prototype | "
-    "Historical sample data and simulated current signals"
+    "Research prototype · Historical sample data and simulated current signals"
 )
 
 st.info(
@@ -85,6 +614,121 @@ col2.metric("HRV", f"{latest['HRV (ms)']:.0f} ms")
 col3.metric("Sleep", f"{latest['Sleep (hours)']:.1f} h")
 col4.metric("Stress Index", f"{latest['Stress Index (simulated)']}/100")
 
+
+# Futuristic Health Signal Overview
+st.markdown("## ◈ LIVE SIGNAL OVERVIEW")
+st.caption("CURRENT SIMULATED READINGS · DEMONSTRATION DATA")
+
+heart_rate_card = float(latest["Heart Rate (bpm)"])
+hrv_card = float(latest["HRV (ms)"])
+stress_card = float(latest["Stress Index (simulated)"])
+
+# Use the actual sleep column if it exists in the latest row.
+sleep_candidates = [
+    col for col in latest.index
+    if "sleep" in str(col).lower()
+]
+
+card1, card2, card3, card4 = st.columns(4)
+
+with card1:
+    st.metric(
+        "♡ Heart Rate",
+        f"{heart_rate_card:.1f} bpm"
+    )
+
+with card2:
+    st.metric(
+        "∿ HRV",
+        f"{hrv_card:.1f} ms"
+    )
+
+with card3:
+    st.metric(
+        "✧ Simulated Stress",
+        f"{stress_card:.1f}"
+    )
+
+with card4:
+    if sleep_candidates:
+        sleep_value = float(latest[sleep_candidates[0]])
+        st.metric("☾ Sleep Metric", f"{sleep_value:.1f}")
+    else:
+        st.metric("☾ Sleep Metric", "N/A")
+
+st.caption(
+    "All values are from the demonstration dataset. "
+    "The stress index is simulated, and these cards are not a medical assessment."
+)
+
+# Animated Neural Waveform
+st.markdown(
+    """
+    <div class="neuro-wave-panel">
+        <div class="neuro-wave-heading">
+            <span>◈ NEURAL SIGNAL VISUALIZER</span>
+            <span class="neuro-wave-tag">SIMULATION</span>
+        </div>
+        <div class="neuro-wave">
+            <div class="neuro-wave-line"></div>
+            <div class="neuro-wave-line neuro-wave-line-two"></div>
+        </div>
+        <div class="neuro-wave-footer">
+            <span>SIMULATED SIGNAL</span>
+            <span>VISUAL DEMONSTRATION ONLY</span>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="neuro-section-label">
+        ◈ PREDICTIVE INTELLIGENCE MODULE
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Signal values linked to the simulated dataset
+st.markdown("#### ◈ SIGNAL TELEMETRY")
+
+telemetry1, telemetry2, telemetry3 = st.columns(3)
+
+with telemetry1:
+    st.metric(
+        "Heart Rate",
+        f"{float(latest['Heart Rate (bpm)']):.1f} bpm"
+    )
+
+with telemetry2:
+    st.metric(
+        "Heart Rate Variability",
+        f"{float(latest['HRV (ms)']):.1f} ms"
+    )
+
+with telemetry3:
+    st.metric(
+        "Simulated Stress Index",
+        f"{float(latest['Stress Index (simulated)']):.1f}"
+    )
+
+st.caption(
+    "Telemetry reflects the latest row in the synthetic demonstration dataset. "
+    "It is not a real-time wearable connection or clinical assessment."
+)
+
+st.markdown(
+    "## AI Pattern Analysis"
+)
+
+st.caption(
+    "Exploratory model output based on synthetic demonstration signals"
+)
+
+st.divider()
+
 # AI Prediction Demo
 st.divider()
 st.header("🤖 AI Signal Prediction Demo")
@@ -98,6 +742,143 @@ prediction_score = predict_demo_event(
     heart_rate=float(latest["Heart Rate (bpm)"]),
     hrv=float(latest["HRV (ms)"]),
     stress_index=float(latest["Stress Index (simulated)"])
+)
+
+# Signal Snapshot - Demonstration Data
+st.markdown("### ◈ SIGNAL SNAPSHOT")
+
+snapshot_col1, snapshot_col2, snapshot_col3 = st.columns(3)
+
+with snapshot_col1:
+    st.metric(
+        "Heart Rate",
+        f"{float(latest['Heart Rate (bpm)']):.1f} bpm"
+    )
+
+with snapshot_col2:
+    st.metric(
+        "HRV",
+        f"{float(latest['HRV (ms)']):.1f} ms"
+    )
+
+with snapshot_col3:
+    st.metric(
+        "Simulated Stress",
+        f"{float(latest['Stress Index (simulated)']):.1f}"
+    )
+
+st.caption(
+    "Snapshot of the latest synthetic demonstration values. "
+    "These measurements are not a medical assessment."
+)
+
+
+# AI Insight Summary - Experimental Demo
+st.markdown(
+    """
+    <div style="
+        padding:18px;
+        margin:16px 0;
+        border:1px solid rgba(53,223,255,0.28);
+        border-radius:16px;
+        background:linear-gradient(
+            135deg,
+            rgba(5,24,46,0.96),
+            rgba(25,18,54,0.96)
+        );
+        box-shadow:0 0 20px rgba(53,223,255,0.06);
+    ">
+        <div style="
+            color:#55eaff;
+            font-size:11px;
+            letter-spacing:1.5px;
+            margin-bottom:10px;
+        ">
+            ◈ AI INSIGHT SUMMARY
+        </div>
+        <div style="
+            color:#d7e8ff;
+            font-size:14px;
+            line-height:1.7;
+        ">
+            The model has processed the latest demonstration signals.
+            Interpret its output alongside the displayed heart-rate,
+            HRV, and simulated stress values. This is an experimental
+            software demonstration, not a diagnosis or validated
+            health prediction.
+        </div>
+        <div style="
+            color:#a995ff;
+            font-size:10px;
+            letter-spacing:1px;
+            margin-top:12px;
+        ">
+            MODEL OUTPUT · SYNTHETIC DATA · RESEARCH DEMO
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+# Prediction Output Visualization
+try:
+    score_value = float(prediction_score)
+
+    # Support either probability values (0-1) or percentage values (0-100)
+    if 0.0 <= score_value <= 1.0:
+        score_percent = score_value * 100
+    else:
+        score_percent = max(0.0, min(100.0, score_value))
+
+    st.markdown("### ◈ Model Output Visualization")
+
+    st.progress(int(score_percent))
+
+    st.caption(
+        f"Model output: {score_percent:.1f}% — "
+        "experimental synthetic-data result, not a clinical risk score."
+    )
+
+except (TypeError, ValueError):
+    st.info(
+        "The model output is available, but it could not be displayed "
+        "as a numeric meter."
+    )
+
+
+# Futuristic System Activity Log
+st.markdown(
+    """
+    <div class="neuro-section-label">
+        ◈ SYSTEM ACTIVITY LOG
+    </div>
+    <div class="neuro-panel">
+        <div style="color:#55eaff; margin-bottom:14px;">
+            DEMONSTRATION SESSION EVENTS
+        </div>
+        <div style="border-left:2px solid #35dfff; padding-left:16px;">
+            <p style="color:#dff7ff; margin:0 0 5px 0;">
+                ● Signal dataset generated
+            </p>
+            <p style="color:#86a9c4; font-size:12px; margin:0 0 16px 0;">
+                Synthetic wearable readings prepared for demonstration.
+            </p>
+            <p style="color:#dff7ff; margin:0 0 5px 0;">
+                ● Trend visualization available
+            </p>
+            <p style="color:#86a9c4; font-size:12px; margin:0 0 16px 0;">
+                Historical and simulated signal trends can be explored.
+            </p>
+            <p style="color:#dff7ff; margin:0 0 5px 0;">
+                ● Model output available
+            </p>
+            <p style="color:#86a9c4; font-size:12px; margin:0;">
+                Experimental output uses synthetic demonstration data.
+            </p>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 # Signal inputs used by the demonstration model
@@ -239,6 +1020,7 @@ with st.expander("🔍 Model Training & Limitations"):
 # Digital Twin Signal Summary
 st.markdown("### Digital Twin Signal Summary")
 
+
 st.caption(
     "Latest dashboard snapshot — demonstration data, not a clinical assessment."
 )
@@ -262,8 +1044,9 @@ st.warning(
 )
 
 
-# Trend chart
-st.markdown("### Wearable Signal Trends")
+
+# Trend Chart - Interactive Signal Explorer
+st.markdown("### ◈ Wearable Signal Trends")
 
 metric = st.selectbox(
     "Choose a signal to explore",
@@ -275,20 +1058,207 @@ metric = st.selectbox(
     ]
 )
 
+record_range = st.selectbox(
+    "Select history window",
+    ["All records", "Last 5 records", "Last 10 records", "Last 20 records"],
+    index=0
+)
+
+if record_range == "Last 5 records":
+    chart_data = health_data.tail(5).copy()
+elif record_range == "Last 10 records":
+    chart_data = health_data.tail(10).copy()
+elif record_range == "Last 20 records":
+    chart_data = health_data.tail(20).copy()
+else:
+    chart_data = health_data.copy()
+
 fig = px.line(
-    health_data,
+    chart_data,
     x="Time",
     y=metric,
     markers=True,
     title=f"{metric} over time"
 )
 
+fig.update_traces(
+    line=dict(color="#35DFFF", width=3),
+    marker=dict(
+        color="#9677FF",
+        size=7,
+        line=dict(color="#FFFFFF", width=1)
+    ),
+    hovertemplate=(
+        "<b>%{x}</b><br>"
+        + metric + ": %{y:.2f}"
+        + "<extra></extra>"
+    )
+)
+
 fig.update_layout(
+    template="plotly_dark",
+    paper_bgcolor="rgba(0,0,0,0)",
+    plot_bgcolor="rgba(4,18,36,0.65)",
+    font=dict(
+        family="Inter, sans-serif",
+        color="#C7E8FF",
+        size=12
+    ),
+    title_font=dict(
+        family="Orbitron, sans-serif",
+        color="#42E8FF",
+        size=18
+    ),
+    margin=dict(l=15, r=15, t=55, b=15),
+    hoverlabel=dict(
+        bgcolor="#071B31",
+        bordercolor="#35DFFF",
+        font=dict(color="#FFFFFF")
+    ),
     xaxis_title="Time",
     yaxis_title=metric
 )
 
+fig.update_xaxes(
+    showgrid=True,
+    gridcolor="rgba(65,150,200,0.14)",
+    zeroline=False,
+    linecolor="rgba(65,200,255,0.35)"
+)
+
+fig.update_yaxes(
+    showgrid=True,
+    gridcolor="rgba(65,150,200,0.14)",
+    zeroline=False,
+    linecolor="rgba(65,200,255,0.35)"
+)
+
 st.plotly_chart(fig, use_container_width=True)
+
+
+# Interactive Signal Statistics
+
+
+# Signal Variation Indicator
+st.markdown("### ◈ SIGNAL VARIATION")
+
+if not chart_data.empty and metric in chart_data.columns:
+    variation_values = pd.to_numeric(
+        chart_data[metric],
+        errors="coerce"
+    ).dropna()
+
+    if len(variation_values) >= 2:
+        signal_std = float(variation_values.std())
+        signal_mean = float(variation_values.mean())
+
+        st.metric(
+            "Standard Deviation",
+            f"{signal_std:.2f}"
+        )
+
+        if abs(signal_mean) > 1e-9:
+            coefficient_variation = (
+                signal_std / abs(signal_mean)
+            ) * 100
+
+            st.caption(
+                f"Coefficient of variation: "
+                f"{coefficient_variation:.2f}%"
+            )
+
+        st.caption(
+            "Higher variation means the selected values are more "
+            "spread out around their average. Interpretation depends "
+            "on the signal and its units; this is not a health diagnosis."
+        )
+    else:
+        st.info(
+            "At least two numeric records are needed to calculate variation."
+        )
+
+
+ 
+
+# NeuroRhythm Twin - Demo Runtime Indicator
+st.markdown(
+    """
+    <div style="
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        flex-wrap:wrap;
+        gap:12px;
+        padding:12px 16px;
+        margin:18px 0;
+        border:1px solid rgba(53,223,255,0.25);
+        border-radius:12px;
+        background:linear-gradient(
+            90deg,
+            rgba(7,25,48,0.95),
+            rgba(24,18,53,0.95)
+        );
+    ">
+        <div style="
+            color:#55eaff;
+            font-size:11px;
+            letter-spacing:1.5px;
+            font-weight:600;
+        ">
+            ◈ NEURORHYTHM RUNTIME
+        </div>
+        <div style="
+            color:#9fb8d4;
+            font-size:11px;
+        ">
+            <span style="color:#45f0a5;">●</span>
+            DEMO INTERFACE ACTIVE
+        </div>
+        <div style="
+            color:#bda8ff;
+            font-size:10px;
+            letter-spacing:1px;
+        ">
+            SYNTHETIC DATA MODE
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# Futuristic AI System Status Panel
+st.markdown(
+    """
+    <div class="neuro-panel">
+        <div class="neuro-panel-header">
+            <span>◈ NEURAL ANALYTICS CORE</span>
+            <span class="neuro-status">
+                <span class="neuro-status-dot"></span>
+                OPERATIONAL
+            </span>
+        </div>
+        <div class="neuro-panel-body">
+            <div class="neuro-orb">
+                <div class="neuro-orb-inner">AI</div>
+            </div>
+            <div class="neuro-system-text">
+                <h3>Digital Twin Intelligence</h3>
+                <p>
+                    Signal processing interface initialized.
+                    Simulated wearable data is available for analysis.
+                </p>
+                <div class="neuro-progress">
+                    <div class="neuro-progress-fill"></div>
+                </div>
+                <small>DEMO INTERFACE · SYNTHETIC DATA ONLY</small>
+            </div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # Data table
 with st.expander("View simulated data table"):
@@ -475,3 +1445,45 @@ if history_file.exists() and not historical_data.empty:
     )
 else:
     st.warning("Historical data is unavailable or empty.")
+
+    
+# Futuristic Dashboard Footer
+st.markdown(
+    """
+    <div style="
+        margin-top: 35px;
+        padding: 20px 10px;
+        border-top: 1px solid rgba(53, 223, 255, 0.3);
+        text-align: center;
+        background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(8, 28, 52, 0.45)
+        );
+    ">
+        <div style="
+            color: #55eaff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        ">
+            NEURORHYTHM TWIN
+        </div>
+        <div style="
+            color: #8ba9c3;
+            font-size: 12px;
+        ">
+            DIGITAL HEALTH TWIN · RESEARCH PROTOTYPE
+        </div>
+        <div style="
+            color: #63829e;
+            font-size: 10px;
+            margin-top: 10px;
+        ">
+            Synthetic demonstration data only · Not for clinical decisions
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
