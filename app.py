@@ -2,7 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
-from prediction_model import predict_demo_event
+from prediction_model import (
+    predict_demo_event,
+    get_demo_model_metrics,
+    get_demo_feature_importance,
+)
 from pathlib import Path
 
 st.set_page_config(
@@ -743,6 +747,48 @@ prediction_score = predict_demo_event(
     hrv=float(latest["HRV (ms)"]),
     stress_index=float(latest["Stress Index (simulated)"])
 )
+
+
+# AI Model Evaluation - Synthetic Demonstration
+st.divider()
+st.markdown("### ◈ AI MODEL EVALUATION")
+
+demo_metrics = get_demo_model_metrics()
+positive_metrics = demo_metrics["report"]["Elevated demo pattern"]
+
+eval_col1, eval_col2, eval_col3 = st.columns(3)
+
+with eval_col1:
+    st.metric(
+        "Test Accuracy",
+        f"{demo_metrics['accuracy'] * 100:.1f}%"
+    )
+
+with eval_col2:
+    st.metric(
+        "Precision",
+        f"{positive_metrics['precision'] * 100:.1f}%"
+    )
+
+with eval_col3:
+    st.metric(
+        "Recall",
+        f"{positive_metrics['recall'] * 100:.1f}%"
+    )
+
+st.metric(
+    "F1-Score",
+    f"{positive_metrics['f1-score'] * 100:.1f}%"
+)
+
+st.caption(
+    f"Evaluation used {demo_metrics['test_samples']} held-out "
+    "synthetic samples. These metrics measure agreement with the "
+    "synthetic labeling rule, not clinical accuracy or real-world "
+    "health prediction performance."
+)
+
+
 
 # Signal Snapshot - Demonstration Data
 st.markdown("### ◈ SIGNAL SNAPSHOT")
@@ -1486,4 +1532,49 @@ st.markdown(
     </div>
     """,
     unsafe_allow_html=True
+)
+
+# Downloadable AI Evaluation Report
+st.markdown("#### ◈ EXPORT MODEL EVALUATION")
+
+evaluation_report = {
+    "evaluation_type": "Synthetic demonstration only",
+    "test_samples": demo_metrics["test_samples"],
+    "accuracy": demo_metrics["accuracy"],
+    "precision": positive_metrics["precision"],
+    "recall": positive_metrics["recall"],
+    "f1_score": positive_metrics["f1-score"],
+    "confusion_matrix": demo_metrics["confusion_matrix"],
+    "feature_importance": get_demo_feature_importance(),
+    "limitations": (
+        "Metrics measure agreement with synthetic labels generated "
+        "by a demonstration rule. They do not establish clinical "
+        "accuracy, medical validity, or real-world predictive ability."
+    ),
+}
+
+evaluation_report_df = pd.DataFrame(
+    [
+        {"Metric": "Test samples", "Value": evaluation_report["test_samples"]},
+        {"Metric": "Accuracy", "Value": evaluation_report["accuracy"]},
+        {"Metric": "Precision", "Value": evaluation_report["precision"]},
+        {"Metric": "Recall", "Value": evaluation_report["recall"]},
+        {"Metric": "F1-score", "Value": evaluation_report["f1_score"]},
+        *[
+            {"Metric": f"Feature importance: {name}", "Value": value}
+            for name, value in evaluation_report["feature_importance"].items()
+        ],
+    ]
+)
+
+st.download_button(
+    label="⬇ Download AI Evaluation Report (CSV)",
+    data=evaluation_report_df.to_csv(index=False).encode("utf-8"),
+    file_name="neurorhythm_ai_evaluation.csv",
+    mime="text/csv",
+)
+
+st.caption(
+    "The downloaded report contains synthetic-data evaluation results, "
+    "not clinical evidence."
 )

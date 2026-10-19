@@ -2,7 +2,11 @@
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+)
 
 
 FEATURE_NAMES = [
@@ -53,6 +57,7 @@ def train_demo_model():
 
     # Keep evaluation separate from the training data.
     predictions = model.predict(X_test)
+
     metrics = {
         "accuracy": float(accuracy_score(y_test, predictions)),
         "report": classification_report(
@@ -66,9 +71,15 @@ def train_demo_model():
             output_dict=True,
             zero_division=0,
         ),
+        "confusion_matrix": confusion_matrix(
+            y_test,
+            predictions,
+            labels=[0, 1],
+        ).tolist(),
         "test_samples": int(len(y_test)),
         "data_type": "synthetic",
     }
+
 
     return model, metrics
 
@@ -106,6 +117,19 @@ def predict_demo_event(heart_rate, hrv, stress_index):
     return float(probabilities[class_index])
 
 
+
 def get_demo_model_metrics():
     """Return held-out metrics for the synthetic demonstration."""
     return _DEMO_METRICS
+
+
+
+def get_demo_feature_importance():
+    """Return feature importance for the synthetic demo model."""
+    return {
+        name: float(importance)
+        for name, importance in zip(
+            FEATURE_NAMES,
+            _DEMO_MODEL.feature_importances_,
+        )
+    }
