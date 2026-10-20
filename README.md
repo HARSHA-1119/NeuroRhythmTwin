@@ -20,6 +20,7 @@ The project explores how a digital twin interface could help users and researche
 - **Harsha Vardhan:** Amrita Vishwa Vidyapeetham, Amritapuri Campus
 - **Yashash Krishna:** Annamacharya Institute of Technology, Rajampet Campus
 
+
 ## 1. Project Objectives
 
 - Demonstrate a digital health twin dashboard.
