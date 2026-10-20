@@ -7,6 +7,14 @@ The project explores how a digital twin interface could help users and researche
 
 > **Research demonstration only:** This prototype uses synthetic signals and sample historical data. It has not been clinically validated and must not be used for diagnosis, treatment, or medical decision-making.
 
+## Team Details
+
+**Team Name:** Alpha Monarchs
+
+**Team Members:**
+1. **Harsha Vardhan** — Amrita Vishwa Vidyapeetham, Amritapuri Campus
+2. **Yashash Krishna** — Annamacharya Institute of Technology, Rajampet Campus
+
 ## 1. Project Objectives
 
 - Demonstrate a digital health twin dashboard.
