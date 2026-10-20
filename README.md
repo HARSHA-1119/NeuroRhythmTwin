@@ -175,5 +175,3 @@ NeuroRhythm Twin is an educational and research prototype. It is not a medical d
 GitHub: https://github.com/HARSHA-1119/NeuroRhythmTwin
 
 The prototype is intended to demonstrate a possible digital health twin workflow and provide a foundation for further research and responsible development.
-
-[View PowerPoint](./neurorhythm_twin__ai_health_prototype.pptx)
