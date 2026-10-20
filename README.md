@@ -15,6 +15,11 @@ The project explores how a digital twin interface could help users and researche
 1. **Harsha Vardhan** — Amrita Vishwa Vidyapeetham, Amritapuri Campus
 2. **Yashash Krishna** — Annamacharya Institute of Technology, Rajampet Campus
 
+## College / Incubator Information
+
+- **Harsha Vardhan:** Amrita Vishwa Vidyapeetham, Amritapuri Campus
+- **Yashash Krishna:** Annamacharya Institute of Technology, Rajampet Campus
+
 ## 1. Project Objectives
 
 - Demonstrate a digital health twin dashboard.
